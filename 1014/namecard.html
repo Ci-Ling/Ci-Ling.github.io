@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ci-Ling 名片</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            font-family: 'Segoe UI', 'Noto Sans TC', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            display: flex;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(60, 60, 120, 0.12);
+            border-radius: 24px;
+            overflow: hidden;
+            width: 480px;
+            max-width: 95vw;
+            min-height: 260px;
+        }
+        .card-left {
+            background: linear-gradient(135deg, #6366f1 60%, #818cf8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+            padding: 32px 0;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+            background: #fff;
+            object-fit: cover;
+        }
+        .card-right {
+            width: 60%;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3730a3;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 1.1rem;
+            color: #6366f1;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+        .info {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+        @media (max-width: 600px) {
+            .card {
+                flex-direction: column;
+                width: 98vw;
+                min-height: 0;
+            }
+            .card-left, .card-right {
+                width: 100%;
+                padding: 24px 0;
+                text-align: center;
+            }
+            .card-right {
+                padding: 18px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-left">
+            <img src="ciling.jpg" alt="Ci-Ling" class="avatar">
+        </div>
+        <div class="card-right">
+            <div class="name">Ci-Ling</div>
+            <div class="title">前端工程師 / 網頁設計師</div>
+            <div class="info">Email: ciling@example.com</div>
+            <div class="info">電話: 0912-345-678</div>
+            <div class="info">台北市大安區</div>
+            <div class="info">專長：HTML、CSS、JavaScript、UI/UX 設計</div>
+        </div>
+    </div>
+</body>
+</html>
