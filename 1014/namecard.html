@@ -32,16 +32,55 @@
             justify-content: center;
             width: 40%;
             padding: 32px 0;
+            position: relative; /* 幾何裝飾用 */
         }
         .avatar {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
+            border-radius: 40% / 50%; /* 直向橢圓遮罩 */
             overflow: hidden;
             border: 4px solid #fff;
             box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
             background: #fff;
             object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+        /* 幾何裝飾 */
+        .geo-circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 60% 40%, #a5b4fc 0%, #6366f1 80%);
+            z-index: 1;
+            opacity: 0.5;
+        }
+        .geo-triangle {
+            position: absolute;
+            left: 20%;
+            top: 70%;
+            width: 0;
+            height: 0;
+            border-left: 32px solid transparent;
+            border-right: 32px solid transparent;
+            border-bottom: 48px solid #818cf8;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .geo-square {
+            position: absolute;
+            right: 10%;
+            top: 20%;
+            width: 36px;
+            height: 36px;
+            background: #6366f1;
+            border-radius: 8px;
+            opacity: 0.6;
+            z-index: 1;
         }
         .card-right {
             width: 60%;
@@ -89,15 +128,18 @@
 <body>
     <div class="card">
         <div class="card-left">
+            <div class="geo-circle"></div>
+            <div class="geo-triangle"></div>
+            <div class="geo-square"></div>
             <img src="ciling.jpg" alt="Ci-Ling" class="avatar">
         </div>
         <div class="card-right">
-            <div class="name">Ci-Ling</div>
-            <div class="title">前端工程師 / 網頁設計師</div>
-            <div class="info">Email: ciling@example.com</div>
+            <div class="name">謝慈玲</div>
+            <div class="title">大學生</div>
+            <div class="info">Email: 123456@example.com</div>
             <div class="info">電話: 0912-345-678</div>
-            <div class="info">台北市大安區</div>
-            <div class="info">專長：HTML、CSS、JavaScript、UI/UX 設計</div>
+            <div class="info">國立台北教育大學</div>
+            <div class="info">科系：藝術與造形設計</div>
         </div>
     </div>
 </body>
