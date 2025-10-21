@@ -15,7 +15,7 @@ body, html {
 .bgimg {
   background-position: center;
   background-size: cover;
-  background-image: url("./images/coffeehouse.jpg");
+  background-image: url("./images/123.webp");
   min-height: 75%;
 }
 
@@ -27,6 +27,7 @@ body, html {
 <body>
 
 <!-- Links (sit on top) -->
+<!-- Links (sit on top) -->
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
     <div class="w3-col s3">
@@ -36,7 +37,7 @@ body, html {
       <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
     </div>
     <div class="w3-col s3">
-      <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+      <a href="#menu" class="w3-button w3-block w3-black">INFORMATION</a>
     </div>
     <div class="w3-col s3">
       <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
@@ -44,13 +45,12 @@ body, html {
   </div>
 </div>
 
+
 <!-- Header with image -->
 <header class="bgimg w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-    <span class="w3-tag">Open from 6am to 5pm</span>
   </div>
   <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
   </div>
   <div class="w3-display-bottomright w3-center w3-padding-large">
     <span class="w3-text-white">15 Adr street, 5015</span>
@@ -72,12 +72,12 @@ body, html {
     <p>毛利小五郎與長野縣警三人組的精彩故事，安室透也帥氣登場，一樁懸疑的神秘事件就此展開。</p>
     
     <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
-      <p>Chef, Coffeeist and Owner: Liam Brown</p>
+      <p><i>那沉睡多時的記憶，突然甦醒──</i></p>
+      
     </div>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/ChPerPg8ZEg?si=hr0tnGtLh0HzMK7f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
-    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
+    <p><strong>台灣上映日期：</strong>2025年6月25日</p>
+  
   </div>
 </div>
 
@@ -85,49 +85,70 @@ body, html {
 <div class="w3-container" id="menu">
   <div class="w3-content" style="max-width:700px">
  
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Information</span></h5>
   
     <div class="w3-row w3-center w3-card w3-padding">
       <a href="javascript:void(0)" onclick="openMenu(event, '主演');" id="myLink">
         <div class="w3-col s6 tablink">主演</div>
       </a>
-      <a href="javascript:void(0)" onclick="openMenu(event, '上映日期');">
-        <div class="w3-col s6 tablink">上映日期</div>
+      <a href="javascript:void(0)" onclick="openMenu(event, '基本資料');">
+        <div class="w3-col s6 tablink">基本資料</div>
       </a>
     </div>
 
-    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+    <div id="主演" class="w3-container menu w3-padding-48 w3-card">
       <h5>江戶川柯南</h5>
       <p class="w3-text-grey">高山南</p><br>
     
-      <h5>Honey Almond Granola with Fruits</h5>
-      <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+      <h5>毛利蘭</h5>
+      <p class="w3-text-grey">山崎和佳奈</p><br>
     
-      <h5>Belgian Waffle</h5>
-      <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
+      <h5>毛利小五郎</h5>
+      <p class="w3-text-grey">小山利也</p><br>
     
-      <h5>Scrambled eggs</h5>
-      <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+      <h5>灰原哀</h5>
+      <p class="w3-text-grey">林原惠</p><br>
     
-      <h5>Blueberry Pancakes</h5>
-      <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+      <h5>大和敢助</h5>
+      <p class="w3-text-grey">高田裕司</p><br>
+
+      <h5>諸伏高明</h5>
+      <p class="w3-text-grey">速水獎</p><br>
+
+      <h5>大和敢助</h5>
+      <p class="w3-text-grey">高田裕司</p><br>
+
+      <h5>上原由衣</h5>
+      <p class="w3-text-grey">小清水亞美</p><br>
+
+      <h5>安室透</h5>
+      <p class="w3-text-grey">草尾毅</p><br>
+
+      <h5>風見裕也</h5>
+      <p class="w3-text-grey">飛田展男</p><br>
+
     </div>
 
-    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
-      <h5>Coffee</h5>
-      <p class="w3-text-grey">Regular coffee 2.50</p><br>
+    <div id="基本資料" class="w3-container menu w3-padding-48 w3-card">
+      <h5>導演</h5>
+      <p class="w3-text-grey">重原克也</p><br>
     
-      <h5>Chocolato</h5>
-      <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
+      <h5>編劇</h5>
+      <p class="w3-text-grey">櫻井武晴</p><br>
     
-      <h5>Corretto</h5>
-      <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
+      <h5>原作</h5>
+      <p class="w3-text-grey">青山剛昌</p><br>
     
-      <h5>Iced tea</h5>
-      <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
+      <h5>配樂</h5>
+      <p class="w3-text-grey">King Gnu〈TWILIGHT!!!〉</p><br>
     
-      <h5>Soda</h5>
+      <h5>主題曲</h5>
       <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+
+      <h5>片長</h5>
+      <p class="w3-text-grey">109分鐘</p><br>
+
+
     </div>  
     <img src="./images/detect.jpg" style="width:100%;max-width:1000px;margin-top:32px;">
   </div>
@@ -136,11 +157,10 @@ body, html {
 <!-- Contact/Area Container -->
 <div class="w3-container" id="where" style="padding-bottom:32px;">
   <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
-    <p>Find us at some address at some place.</p>
-    <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
-    <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
-    <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO BUT THE TICKETS</span></h5>
+    <p>【全台預售情報】</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14459.819701617425!2d121.54976553955076!3d25.0356037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb0bd26651b%3A0x920fd187932c8667!2z5Y-w5YyX5L-h576p5aiB56eA5b2x5Z-O!5e0!3m2!1szh-TW!2stw!4v1761031687920!5m2!1szh-TW!2stw" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p><span class="w3-tag">預購粉絲好康活動</span> 預購完成後，無論場次先後，即可憑電影票至購票影城櫃台領取贈品(不得跨影城領取)，數量有限，送完為止，先領先贏。</p>
     <form action="/action_page.php" target="_blank">
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
