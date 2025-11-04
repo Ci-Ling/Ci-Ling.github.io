@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙質感首頁</title>
+    <style>
+        body {
+            font-family: 'Orbitron', 'Noto Sans TC', Arial, sans-serif;
+            background: radial-gradient(ellipse at top left, #1a237e 0%, #8ec5fc 100%);
+            margin: 0;
+            min-height: 100vh;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 100px auto;
+            background: rgba(255,255,255,0.10);
+            padding: 56px 40px 40px 40px;
+            border-radius: 32px;
+            box-shadow: 0 12px 48px rgba(140,200,255,0.18), 0 2px 8px rgba(0,0,0,0.18);
+            border: 1.5px solid #8ec5fc;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+        }
+        h1 {
+            color: #8ec5fc;
+            font-size: 2.7em;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', 'Noto Sans TC', Arial, sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 0 0 16px #8ec5fc, 0 0 32px #fff;
+        }
+        p {
+            color: #e0e0e0;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            text-shadow: 0 1px 8px #222;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+TC:wght@700&display=swap');
+    </style>
+</head>
+<body>
+    <canvas class="stars"></canvas>
+    <div class="container">
+        <h1>宇宙質感首頁</h1>
+        <p>結合宇宙星空與現代質感設計，讓首頁充滿未來科技與細膩美學氛圍。</p>
+    </div>
+    <script>
+    // 產生星空特效
+    const canvas = document.querySelector('.stars');
+    const ctx = canvas.getContext('2d');
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for(let i=0; i<120; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const r = Math.random() * 1.5 + 0.5;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba(255,255,255,' + (Math.random()*0.7+0.3) + ')';
+            ctx.fill();
+        }
+    }
+    setInterval(drawStars, 1200);
+    drawStars();
+    </script>
+</body>
+</html>

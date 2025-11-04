@@ -1,84 +1,113 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<!doctype html>
+<html lang="zh-hant">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宇宙質感首頁</title>
-    <style>
-        body {
-            font-family: 'Orbitron', 'Noto Sans TC', Arial, sans-serif;
-            background: radial-gradient(ellipse at top left, #1a237e 0%, #8ec5fc 100%);
-            margin: 0;
-            min-height: 100vh;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-        .stars {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .container {
-            max-width: 700px;
-            margin: 100px auto;
-            background: rgba(255,255,255,0.10);
-            padding: 56px 40px 40px 40px;
-            border-radius: 32px;
-            box-shadow: 0 12px 48px rgba(140,200,255,0.18), 0 2px 8px rgba(0,0,0,0.18);
-            border: 1.5px solid #8ec5fc;
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(8px);
-        }
-        h1 {
-            color: #8ec5fc;
-            font-size: 2.7em;
-            letter-spacing: 2px;
-            font-family: 'Orbitron', 'Noto Sans TC', Arial, sans-serif;
-            margin-bottom: 20px;
-            text-shadow: 0 0 16px #8ec5fc, 0 0 32px #fff;
-        }
-        p {
-            color: #e0e0e0;
-            font-size: 1.3em;
-            line-height: 1.8;
-            margin-bottom: 24px;
-            text-shadow: 0 1px 8px #222;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+TC:wght@700&display=swap');
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>111415009 謝慈玲</title>
+    <!--1-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!--2-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <canvas class="stars"></canvas>
-    <div class="container">
-        <h1>宇宙質感首頁</h1>
-        <p>結合宇宙星空與現代質感設計，讓首頁充滿未來科技與細膩美學氛圍。</p>
+    <!--導覽-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-    <script>
-    // 產生星空特效
-    const canvas = document.querySelector('.stars');
-    const ctx = canvas.getContext('2d');
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-    function drawStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for(let i=0; i<120; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const r = Math.random() * 1.5 + 0.5;
-            ctx.beginPath();
-            ctx.arc(x, y, r, 0, Math.PI*2);
-            ctx.fillStyle = 'rgba(255,255,255,' + (Math.random()*0.7+0.3) + ')';
-            ctx.fill();
-        }
-    }
-    setInterval(drawStars, 1200);
-    drawStars();
-    </script>
+  </div>
+</nav>
+
+    <!--BANNER-->
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="image/1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="image/2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="image/3.jpg" class="d-block w-100" alt="...">
+    </div>
+     <div class="carousel-item">
+      <img src="image/4.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <!--主要-->
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+    <!--FOOTER-->
 </body>
+
 </html>
