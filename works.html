@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品 | 個人作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* 導覽列樣式 */
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #0066cc;
+        }
+
+        .navbar-right {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555555;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0066cc;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* 行動導覽按鈕 */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* 主要內容 */
+        main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 102, 204, 0.15);
+        }
+
+        .work-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .work-card:nth-child(2) .work-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .work-card:nth-child(3) .work-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .work-content {
+            padding: 25px;
+        }
+
+        .work-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .work-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .work-tech {
+            font-size: 13px;
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        /* RWD 響應式設計 */
+        @media (max-width: 768px) {
+            .navbar-container {
+                height: auto;
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+
+            .navbar-left {
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+
+            .navbar-right {
+                flex-basis: 100%;
+                flex-direction: column;
+                gap: 10px;
+                display: none;
+            }
+
+            .navbar-right.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+                flex-basis: auto;
+                margin-left: auto;
+            }
+
+            .nav-link {
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導覽列 -->
+    <nav>
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <a href="index.html" class="logo">CL</a>
+            </div>
+            
+            <div class="navbar-right" id="navbar-menu">
+                <a href="index.html" class="nav-link">首頁</a>
+                <a href="about.html" class="nav-link">關於</a>
+                <a href="works.html" class="nav-link active">作品</a>
+            </div>
+
+            <button class="mobile-toggle" id="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- 主要內容 -->
+    <main>
+        <h1>我的作品</h1>
+        
+        <div class="works-grid">
+            <!-- 作品 1 -->
+            <div class="work-card">
+                <div class="work-image">作品展示 1</div>
+                <div class="work-content">
+                    <h3>響應式個人網站</h3>
+                    <p>
+                        設計並開發了一個現代化的個人作品集網站，
+                        採用響應式設計，在各種裝置上都有最佳的顯示效果。
+                    </p>
+                    <div class="work-tech">HTML • CSS • JavaScript</div>
+                </div>
+            </div>
+
+            <!-- 作品 2 -->
+            <div class="work-card">
+                <div class="work-image">作品展示 2</div>
+                <div class="work-content">
+                    <h3>電商平台前端</h3>
+                    <p>
+                        使用 React 框架開發了一個功能完整的電商平台，
+                        包含產品列表、購物車和支付功能。
+                    </p>
+                    <div class="work-tech">React • Redux • API</div>
+                </div>
+            </div>
+
+            <!-- 作品 3 -->
+            <div class="work-card">
+                <div class="work-image">作品展示 3</div>
+                <div class="work-content">
+                    <h3>待辦事項應用</h3>
+                    <p>
+                        開發了一個簡潔高效的待辦事項應用，
+                        支援添加、編輯、刪除和篩選任務功能。
+                    </p>
+                    <div class="work-tech">Vue • LocalStorage</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 行動導覽切換
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        mobileToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+
+        // 點擊連結後關閉行動導覽
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

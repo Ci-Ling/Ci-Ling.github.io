@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人網站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 導覽列樣式 */
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        /* 左側 Logo */
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #0066cc;
+        }
+
+        /* 右側導覽選項 */
+        .navbar-right {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555555;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0066cc;
+        }
+
+        /* 下劃線動畫效果 */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* 行動導覽按鈕 */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* 主頁部分樣式 */
+        .hero-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 微粒背景容器 */
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* 內容層 */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 標題部分 */
+        .hero-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-title h1 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            -webkit-font-smoothing:antialiased;
+        }
+
+        /* 將反光當作文字的背景漸層，並使用 background-clip: text */
+        .title-text {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            /* 柔和的文字反光：較寬且半透明的高亮條 */
+            background: linear-gradient(90deg,
+                #1a1a1a 30%,
+                rgba(255,255,255,0.7) 45%,
+                rgba(255,255,255,0.7) 55%,
+                #1a1a1a 70%
+            );
+            /* 放大背景範圍以利平滑滑動 */
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            /* 使用 CSS 動畫自動移動反光（不依賴滾動），速度較慢、更柔和 */
+            animation: shimmerMove 6s linear infinite;
+        }
+
+        /* 保留 .shimmer 類但隱藏（舊方法） */
+        .shimmer {
+            display: none;
+        }
+
+        /* 自動反光動畫：背景位置從左滑到右 */
+        @keyframes shimmerMove {
+            /* 單向由左到右的滑動，回到起點後重複（看起來連續且柔和） */
+            0% { background-position: -100% center; }
+            100% { background-position: 200% center; }
+        }
+        /* 輪播區域 */
+        .carousel-container {
+            max-width: 900px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        /* 輪播圖片替代文字 */
+        .carousel-slide-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #999;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .carousel-slide:nth-child(2) .carousel-slide-placeholder {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .carousel-slide:nth-child(3) .carousel-slide-placeholder {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* 輪播控制點 */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #ffffff;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* 標語區域 */
+        .tagline-section {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .tagline-section h2 {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .tagline-section p {
+            font-size: 18px;
+            color: #666666;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* 基本資料頁面樣式 */
+        #profile-page {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            display: none;
+        }
+
+        #profile-page h1 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        #profile-page p {
+            font-size: 18px;
+            color: #666666;
+            line-height: 1.8;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* RWD 響應式設計 */
+        @media (max-width: 768px) {
+            .navbar-container {
+                height: auto;
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+
+            .navbar-left {
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+
+            .navbar-right {
+                flex-basis: 100%;
+                flex-direction: column;
+                gap: 10px;
+                display: none;
+            }
+
+            .navbar-right.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+                flex-basis: auto;
+                margin-left: auto;
+            }
+
+            .nav-link {
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero-title h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .carousel {
+                height: 300px;
+            }
+
+            .tagline-section h2 {
+                font-size: 24px;
+            }
+
+            .tagline-section p {
+                font-size: 16px;
+            }
+
+            #profile-page {
+                margin: 30px 20px;
+                padding: 15px;
+            }
+
+            #profile-page h1 {
+                font-size: 28px;
+            }
+
+            #profile-page p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <nav>
+        <div class="navbar-container">
+            <!-- 左側 Logo -->
+            <div class="navbar-left">
+                <a href="index.html" class="logo">CL</a>
+            </div>
+            
+            <!-- 右側導覽選項 -->
+            <div class="navbar-right" id="navbar-menu">
+                <a href="index.html" class="nav-link active">首頁</a>
+                <a href="about.html" class="nav-link">關於</a>
+                <a href="works.html" class="nav-link">作品</a>
+            </div>
+
+            <!-- 行動導覽按鈕 -->
+            <button class="mobile-toggle" id="mobile-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- 主頁 -->
+    <main id="home">
+        <!-- 主頁 Hero 區域 -->
+        <section class="hero-section">
+            <!-- 微粒背景 Canvas -->
+            <canvas class="particle-canvas" id="particleCanvas"></canvas>
+
+            <!-- 內容層 -->
+            <div class="hero-content">
+                <!-- 標題部分 -->
+                <div class="hero-title">
+                    <h1>
+                        <span class="title-text">Web Design Portfolio</span>
+                    </h1>
+                </div>
+
+                <!-- 輪播區域 -->
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-slide active">
+                            <div class="carousel-slide-placeholder">作品展示 1</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-slide-placeholder">作品展示 2</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-slide-placeholder">作品展示 3</div>
+                    </div>
+
+                    <!-- 輪播控制點 -->
+                    <div class="carousel-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 標語區域 -->
+            <div class="tagline-section">
+                <h2>從零到網站，設計超有感！</h2>
+                <p>記錄我們在網站設計中的每一次練習、嘗試與完成。</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 基本資料頁面 -->
+    <div id="profile-page" style="display: none;">
+        <h1>基本資料</h1>
+        <p>這裡是基本資料頁面。</p>
+    </div>
+
+    <script>
+        // ===== 微粒背景效果 =====
+        class ParticleEffect {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouseX = window.innerWidth / 2;
+                this.mouseY = window.innerHeight / 2;
+                
+                // 設置 canvas 大小
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                
+                // 鼠標跟隨
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                });
+                
+                // 初始化微粒
+                this.initParticles();
+                
+                // 開始動畫
+                this.animate();
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            initParticles() {
+                const particleCount = 80;
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 2 + 1,
+                        speedX: (Math.random() - 0.5) * 0.5,
+                        speedY: (Math.random() - 0.5) * 0.5,
+                        opacity: Math.random() * 0.5 + 0.2,
+                        color: `rgba(0, 102, 204, ${Math.random() * 0.6 + 0.2})`
+                    });
+                }
+            }
+            
+            animate() {
+                // 清除 canvas
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 更新並繪製微粒
+                this.particles.forEach((particle, index) => {
+                    // 計算與鼠標的距離
+                    const dx = particle.x - this.mouseX;
+                    const dy = particle.y - this.mouseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const maxDistance = 150;
+                    
+                    // 鼠標吸引效果
+                    if (distance < maxDistance) {
+                        const force = (maxDistance - distance) / maxDistance;
+                        particle.speedX -= (dx / distance) * force * 0.3;
+                        particle.speedY -= (dy / distance) * force * 0.3;
+                    }
+                    
+                    // 更新位置
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // 邊界檢測（環繞）
+                    if (particle.x < 0) particle.x = this.canvas.width;
+                    if (particle.x > this.canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = this.canvas.height;
+                    if (particle.y > this.canvas.height) particle.y = 0;
+                    
+                    // 速度阻尼
+                    particle.speedX *= 0.98;
+                    particle.speedY *= 0.98;
+                    
+                    // 繪製微粒
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // 繪製微粒之間的連線
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const other = this.particles[j];
+                        const lineDistance = Math.sqrt(
+                            (particle.x - other.x) ** 2 + 
+                            (particle.y - other.y) ** 2
+                        );
+                        
+                        if (lineDistance < 100) {
+                            this.ctx.strokeStyle = `rgba(0, 102, 204, ${0.2 * (1 - lineDistance / 100)})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(other.x, other.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // 初始化微粒效果
+        const particleEffect = new ParticleEffect('particleCanvas');
+
+        // ===== 行動導覽切換 =====
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // 點擊連結後關閉行動導覽
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // ===== 輪播功能 =====
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // 移除所有 active 類
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // 添加當前幻燈片和點的 active 類
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // 每 4 秒自動切換一次
+        setInterval(nextSlide, 4000);
+
+        // 點擊控制點時切換幻燈片
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                currentSlide = parseInt(this.getAttribute('data-slide'));
+                showSlide(currentSlide);
+            });
+        });
+
+        // 顯示基本資料頁面
+        function showProfilePage() {
+            document.getElementById('profile-page').style.display = 'block';
+        }
+
+        // 導覽列按鈕事件
+        const aboutLink = document.querySelector('.nav-link[href="#about"]');
+        if (aboutLink) {
+            aboutLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showProfilePage();
+            });
+        }
+    </script>
+</body>
+</html>
