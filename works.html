@@ -220,6 +220,136 @@
                 gap: 20px;
             }
         }
+
+        /* 兩欄作品展示（左：可滾動圖片，右：項目說明） */
+        .works-panel {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .left-gallery {
+            flex: 1.25;
+            min-width: 320px;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .gallery-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            will-change: transform;
+            transition: transform 0.15s linear;
+        }
+
+        .thumb {
+            height: 360px;
+            margin: 18px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumb::after{
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.28));
+            pointer-events: none;
+        }
+
+        .thumb-label {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            z-index: 2;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.25);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .right-info {
+            flex: 0.75;
+            min-width: 260px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            padding: 20px;
+            background: linear-gradient(180deg,#ffffff,#fbfdff);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease, background 0.3s ease, color 0.3s ease;
+            transform-origin: left center;
+        }
+
+        .info-item.active {
+            transform: translateX(8px) scale(1.04);
+            box-shadow: 0 14px 46px rgba(0,102,204,0.14);
+            background: linear-gradient(90deg,#e6f0ff,#f0fbff);
+        }
+
+        .info-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            transition: color 0.28s ease;
+            color: #1a1a1a;
+        }
+
+        .info-item.active h3 {
+            color: #0066cc;
+        }
+
+        .info-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            transition: color 0.28s ease;
+        }
+
+        .info-item.active p {
+            color: #333;
+        }
+
+        @media (max-width: 900px) {
+            .works-panel { flex-direction: column; }
+            .left-gallery { height: 420px; }
+        }
     </style>
 </head>
 <body>
@@ -243,44 +373,75 @@
     <!-- 主要內容 -->
     <main>
         <h1>我的作品</h1>
-        
-        <div class="works-grid">
-            <!-- 作品 1 -->
-            <div class="work-card">
-                <div class="work-image">作品展示 1</div>
-                <div class="work-content">
-                    <h3>響應式個人網站</h3>
-                    <p>
-                        設計並開發了一個現代化的個人作品集網站，
-                        採用響應式設計，在各種裝置上都有最佳的顯示效果。
-                    </p>
-                    <div class="work-tech">HTML • CSS • JavaScript</div>
+
+        <div class="works-panel">
+            <div class="left-gallery" id="leftGallery">
+                <div class="gallery-container">
+                    <div class="gallery-track" id="galleryTrack">
+                        <a class="project-link" href="1007/index.html" target="_blank">
+                            <div class="thumb">
+                                <img src="1007/Placeholder1.jpg" alt="Project 01 thumbnail">
+                                <div class="thumb-label">Project 01</div>
+                            </div>
+                        </a>
+
+                        <a class="project-link" href="1014/index.html" target="_blank">
+                            <div class="thumb">
+                                <img src="1014/ciling.jpg" alt="Project 02 thumbnail">
+                                <div class="thumb-label">Project 02</div>
+                            </div>
+                        </a>
+
+                        <a class="project-link" href="1021/index.html" target="_blank">
+                            <div class="thumb">
+                                <img src="1021/images/IMG_20251021_142252.jpg" alt="Project 03 thumbnail">
+                                <div class="thumb-label">Project 03</div>
+                            </div>
+                        </a>
+
+                        <a class="project-link" href="1118/index.html" target="_blank">
+                            <div class="thumb">
+                                <img src="1118/picture/technology%20transfer.jpg" alt="Project 04 thumbnail">
+                                <div class="thumb-label">Project 04</div>
+                            </div>
+                        </a>
+
+                        <a class="project-link" href="portfolio/index.html" target="_blank">
+                            <div class="thumb">
+                                <img src="image/1.jpg" alt="Project 05 thumbnail">
+                                <div class="thumb-label">Project 05</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- 作品 2 -->
-            <div class="work-card">
-                <div class="work-image">作品展示 2</div>
-                <div class="work-content">
-                    <h3>電商平台前端</h3>
-                    <p>
-                        使用 React 框架開發了一個功能完整的電商平台，
-                        包含產品列表、購物車和支付功能。
-                    </p>
-                    <div class="work-tech">React • Redux • API</div>
-                </div>
-            </div>
+            <div class="right-info">
+                <div class="info-list" id="infoList">
+                    <div class="info-item" data-index="0">
+                        <h3>Project 01. HTML 結構練習</h3>
+                        <p>• 表格佈局與圖片整合｜2025.10.07</p>
+                    </div>
 
-            <!-- 作品 3 -->
-            <div class="work-card">
-                <div class="work-image">作品展示 3</div>
-                <div class="work-content">
-                    <h3>待辦事項應用</h3>
-                    <p>
-                        開發了一個簡潔高效的待辦事項應用，
-                        支援添加、編輯、刪除和篩選任務功能。
-                    </p>
-                    <div class="work-tech">Vue • LocalStorage</div>
+                    <div class="info-item" data-index="1">
+                        <h3>Project 02. CSS 樣式設計</h3>
+                        <p>• 個人風格明信片製作｜2025.10.14</p>
+                    </div>
+
+                    <div class="info-item" data-index="2">
+                        <h3>Project 03. 前端開發基礎</h3>
+                        <p>• W3School 技術實作｜2025.10.21</p>
+                    </div>
+
+                    <div class="info-item" data-index="3">
+                        <h3>Project 04. 資訊視覺化</h3>
+                        <p>• 競賽簡章網頁化｜2025.11.18</p>
+                    </div>
+
+                    <div class="info-item" data-index="4">
+                        <h3>Project 05. 整合開發與協作</h3>
+                        <p>• 期末分組專案成果｜2025.11.25</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -301,6 +462,82 @@
                 navbarMenu.classList.remove('active');
             });
         });
+
+        // 左側畫廊：滑鼠移動與滾輪控制滾動
+        (function(){
+            const gallery = document.getElementById('leftGallery');
+            const track = document.getElementById('galleryTrack');
+            const infoList = document.getElementById('infoList');
+            const thumbs = Array.from(track.querySelectorAll('.thumb'));
+            const infoItems = Array.from(infoList.querySelectorAll('.info-item'));
+
+            let containerH = gallery.clientHeight;
+            let trackH = track.scrollHeight;
+            let targetY = 0;
+            let currentY = 0;
+
+            function updateSizes(){
+                containerH = gallery.clientHeight;
+                trackH = track.scrollHeight;
+            }
+
+            window.addEventListener('resize', updateSizes);
+
+            // 將 mouseY 映射到 track 可滾動範圍
+            gallery.addEventListener('mousemove', (e)=>{
+                const rect = gallery.getBoundingClientRect();
+                const relY = (e.clientY - rect.top) / rect.height; // 0..1
+                targetY = Math.max(0, Math.min(1, relY)) * (trackH - containerH);
+            });
+
+            // 支援滑輪明確滾動
+            gallery.addEventListener('wheel', (e)=>{
+                e.preventDefault();
+                targetY += e.deltaY; // natural
+                targetY = Math.max(0, Math.min(targetY, Math.max(0, trackH - containerH)));
+            }, {passive:false});
+
+            // 平滑動畫
+            function animate(){
+                currentY += (targetY - currentY) * 0.12;
+                track.style.transform = `translateY(${-currentY}px)`;
+
+                // highlight info item based on nearest thumb center
+                if (thumbs.length) {
+                    const galleryRect = gallery.getBoundingClientRect();
+                    const centers = thumbs.map(t=>{
+                        const r = t.getBoundingClientRect();
+                        return (r.top + r.height/2) - galleryRect.top; // center relative to gallery
+                    });
+                    // choose thumb whose center is closest to container middle
+                    const mid = containerH/2;
+                    let best = 0; let bestDist = Infinity;
+                    centers.forEach((c,i)=>{
+                        const d = Math.abs(c - mid);
+                        if (d < bestDist){ bestDist = d; best = i; }
+                    });
+                    // only update classes when best changes to reduce DOM thrash
+                    if (typeof lastBest === 'undefined' || lastBest !== best) {
+                        infoItems.forEach((it,i)=> it.classList.toggle('active', i===best));
+                        lastBest = best;
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+            updateSizes();
+            animate();
+
+            // 當點擊縮圖時也高亮對應說明
+            track.querySelectorAll('.project-link').forEach((a, idx)=>{
+                a.addEventListener('mouseenter', ()=>{
+                    infoItems.forEach((it,i)=> it.classList.toggle('active', i===idx));
+                });
+                a.addEventListener('mouseleave', ()=>{
+                    infoItems.forEach((it,i)=> it.classList.remove('active'));
+                });
+            });
+        })();
     </script>
 </body>
 </html>
