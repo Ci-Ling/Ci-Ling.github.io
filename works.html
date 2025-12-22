@@ -271,19 +271,43 @@
         }
 
         .thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: filter 0.3s ease;
         }
 
-        .thumb::after{
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.28));
-            pointer-events: none;
-        }
+
+            .thumb:hover img {
+                filter: blur(4px);
+            }
+
+            .thumb .see-more {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff;
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                padding: 14px 36px;
+                border-radius: 32px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s, box-shadow 0.3s, background 0.3s;
+                z-index: 3;
+                background: linear-gradient(90deg, rgba(0,0,0,0.55) 60%, rgba(0,102,204,0.55) 100%);
+                box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+                text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 0 #0066cc;
+                border: 1.5px solid rgba(255,255,255,0.18);
+                backdrop-filter: blur(2px);
+            }
+
+            .thumb:hover .see-more {
+                opacity: 1;
+            }
 
         .thumb-label {
             position: absolute;
@@ -381,6 +405,7 @@
                         <a class="project-link" href="1007/index.html" target="_blank">
                             <div class="thumb">
                                 <img src="1007/Placeholder1.jpg" alt="Project 01 thumbnail">
+                                <div class="see-more">查看更多</div>
                                 <div class="thumb-label">Project 01</div>
                             </div>
                         </a>
@@ -388,6 +413,7 @@
                         <a class="project-link" href="1014/index.html" target="_blank">
                             <div class="thumb">
                                 <img src="1014/ciling.jpg" alt="Project 02 thumbnail">
+                                <div class="see-more">查看更多</div>
                                 <div class="thumb-label">Project 02</div>
                             </div>
                         </a>
@@ -395,6 +421,7 @@
                         <a class="project-link" href="1021/index.html" target="_blank">
                             <div class="thumb">
                                 <img src="1021/images/IMG_20251021_142252.jpg" alt="Project 03 thumbnail">
+                                <div class="see-more">查看更多</div>
                                 <div class="thumb-label">Project 03</div>
                             </div>
                         </a>
@@ -402,6 +429,7 @@
                         <a class="project-link" href="1118/index.html" target="_blank">
                             <div class="thumb">
                                 <img src="1118/picture/technology%20transfer.jpg" alt="Project 04 thumbnail">
+                                <div class="see-more">查看更多</div>
                                 <div class="thumb-label">Project 04</div>
                             </div>
                         </a>
@@ -409,6 +437,7 @@
                         <a class="project-link" href="portfolio/index.html" target="_blank">
                             <div class="thumb">
                                 <img src="image/1.jpg" alt="Project 05 thumbnail">
+                                <div class="see-more">查看更多</div>
                                 <div class="thumb-label">Project 05</div>
                             </div>
                         </a>
