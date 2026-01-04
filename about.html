@@ -178,6 +178,14 @@
             align-items: center;
             justify-content: center;
             border: 2px solid #0066cc;
+            opacity: 0;
+            transform: scale(0.7) translateY(40px);
+            transition: opacity 0.7s cubic-bezier(.4,1.4,.4,1), transform 0.7s cubic-bezier(.4,1.4,.4,1);
+        }
+
+        .profile-photo-container.photo-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
 
         .profile-photo {
@@ -439,7 +447,7 @@
             <div class="profile-section">
                 <!-- 大頭照區域 -->
                 <div class="profile-photo-container">
-                    <img src="https://via.placeholder.com/400x300?text=大頭照" alt="謝慈玲" class="profile-photo">
+                    <img src="./圖片/Q版大頭貼.png" alt="謝慈玲" class="profile-photo">
                 </div>
 
                 <div class="profile-name">謝慈玲</div>
@@ -492,8 +500,7 @@
                     <div class="skill-category-title">網頁開發</div>
                     <ul class="skill-list">
                         <li class="skill-item">VS Code</li>
-                        <li class="skill-item">HTML5 & CSS3</li>
-                        <li class="skill-item">JavaScript</li>
+                        <li class="skill-item">HTML & CSS3</li>
                     </ul>
                 </div>
             </div>
@@ -561,6 +568,16 @@
         
         skillsSection.addEventListener('mousemove', handleMouseMove);
         skillsSection.addEventListener('mouseleave', handleMouseLeave);
+
+        // 展開動畫
+        document.addEventListener('DOMContentLoaded', function() {
+          var photo = document.querySelector('.profile-photo-container');
+          if(photo) {
+            setTimeout(function(){
+              photo.classList.add('photo-in');
+            }, 80);
+          }
+        });
     </script>
 </body>
 </html>
